@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Countdown Timer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="timer-container">
+        <div class="timer-display">
+            <span id="hours">00</span>
+            <span class="separator">:</span>
+            <span id="minutes">00</span>
+            <span class="separator">:</span>
+            <span id="seconds">00</span>
+        </div>
+
+        <div class="timer-inputs">
+            <div class="input-group">
+                <input type="number" id="hour-input" min="0" max="99" placeholder="00">
+                <label for="hour-input">Hours</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="minute-input" min="0" max="59" placeholder="00">
+                <label for="minute-input">Minutes</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="second-input" min="0" max="59" placeholder="00">
+                <label for="second-input">Seconds</label>
+            </div>
+        </div>
+
+        <div class="timer-controls">
+            <button id="start-btn">START</button>
+            <button id="pause-btn" class="hidden">PAUSE</button>
+            <button id="reset-btn">RESET</button>
+        </div>
+    </main>
+
+    <audio id="alarm-sound" src="alarm.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
