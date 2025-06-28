@@ -1,0 +1,194 @@
+/* Variabel Global untuk Tema */
+:root {
+    --bg-color: #121212;
+    --container-color: #1E1E1E;
+    --primary-text-color: #EAEAEA;
+    --secondary-text-color: #888888;
+    --accent-color: #1ABC9C; /* Teal */
+    --accent-color-hover: #16a085;
+    --warning-color: #F39C12; /* Orange */
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Reset dan Pengaturan Dasar Body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Kontainer Utama */
+.timer-container {
+    background-color: var(--container-color);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Tampilan Timer Digital */
+.timer-display {
+    font-size: clamp(3rem, 15vw, 6rem); /* Ukuran font responsif */
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--primary-text-color);
+}
+
+.timer-display .separator {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+/* Animasi saat waktu habis */
+.timer-display.times-up {
+    color: var(--warning-color);
+    animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Grup Input Waktu */
+.timer-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--secondary-text-color);
+    color: var(--primary-text-color);
+    font-size: 1.5rem;
+    width: 60px;
+    text-align: center;
+    font-family: var(--font-family);
+    transition: border-color 0.3s ease;
+}
+
+/* Menghilangkan panah di input number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tombol Kontrol */
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.timer-controls button {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#start-btn {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+#start-btn:hover {
+    background-color: var(--accent-color-hover);
+}
+
+#pause-btn {
+    background-color: var(--warning-color);
+    color: var(--bg-color);
+}
+
+#reset-btn {
+    background-color: var(--secondary-text-color);
+    color: var(--container-color);
+}
+
+.timer-controls button:active {
+    transform: scale(0.97);
+}
+
+.timer-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 480px) {
+    .timer-container {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .timer-inputs {
+        gap: 1rem;
+    }
+
+    .input-group input {
+        width: 50px;
+        font-size: 1.2rem;
+    }
+
+    .timer-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+}
