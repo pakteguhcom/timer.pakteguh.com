@@ -32,12 +32,13 @@ body {
 /* --- Kontainer Utama --- */
 .timer-container {
     background-color: var(--container-color);
-    padding: 3rem 4rem;
+    /* Padding ditambah untuk memberi ruang pada efek glow */
+    padding: 3rem 4rem; 
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
@@ -49,7 +50,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: baseline;
-    font-size: clamp(3rem, 18vw, 7rem); /* Ukuran font besar dan responsif */
+    font-size: clamp(3rem, 18vw, 7rem);
     font-weight: 700;
     color: var(--primary-text-color);
     text-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5), 0 0 5px rgba(var(--accent-color-rgb), 0.3);
@@ -206,12 +207,15 @@ input[type=number] {
 /* --- Media Queries untuk Responsivitas --- */
 @media (max-width: 600px) {
     .timer-container {
-        padding: 2rem;
+        padding: 2.5rem;
         gap: 2rem;
     }
 }
 
 @media (max-width: 480px) {
+    .timer-container {
+        padding: 2rem 1.5rem;
+    }
     .timer-display {
         font-size: clamp(2.5rem, 15vw, 5rem);
     }
