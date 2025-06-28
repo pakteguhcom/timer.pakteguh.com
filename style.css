@@ -1,4 +1,4 @@
-/* Variabel Global untuk Tema */
+/* --- Variabel Global untuk Tema --- */
 :root {
     --bg-color: #121212;
     --container-color: #1E1E1E;
@@ -6,11 +6,12 @@
     --secondary-text-color: #888888;
     --accent-color: #1ABC9C; /* Teal */
     --accent-color-hover: #16a085;
-    --warning-color: #F39C12; /* Orange */
+    --accent-color-rgb: 26, 188, 156; /* Nilai RGB untuk efek shadow */
+    --warning-color: #F39C12; /* Oranye */
     --font-family: 'Poppins', sans-serif;
 }
 
-/* Reset dan Pengaturan Dasar Body */
+/* --- Reset dan Gaya Dasar Body --- */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +20,7 @@
 
 body {
     font-family: var(--font-family);
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     color: var(--primary-text-color);
     display: flex;
     justify-content: center;
@@ -28,49 +29,59 @@ body {
     padding: 1rem;
 }
 
-/* Kontainer Utama */
+/* --- Kontainer Utama --- */
 .timer-container {
     background-color: var(--container-color);
     padding: 2rem 3rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Tampilan Timer Digital */
+/* --- Tampilan Timer Artistik --- */
 .timer-display {
-    font-size: clamp(3rem, 15vw, 6rem); /* Ukuran font responsif */
-    font-weight: 600;
-    letter-spacing: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    font-size: clamp(3rem, 18vw, 7rem); /* Ukuran font besar dan responsif */
+    font-weight: 700;
     color: var(--primary-text-color);
+    text-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5), 0 0 5px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.timer-display span {
+    padding: 0 0.1em;
 }
 
 .timer-display .separator {
-    animation: blink 1s infinite;
+    color: var(--secondary-text-color);
+    font-weight: 400;
+    animation: blink 1.5s infinite;
+    margin: 0 0.2em;
 }
 
 @keyframes blink {
-    50% { opacity: 0.5; }
+    50% { opacity: 0.3; }
 }
 
-/* Animasi saat waktu habis */
 .timer-display.times-up {
     color: var(--warning-color);
-    animation: pulse 0.8s infinite;
+    text-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+    animation: pulse 0.8s infinite alternate;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    from { transform: scale(1); }
+    to { transform: scale(1.03); }
 }
 
-/* Grup Input Waktu */
+/* --- Grup Input Waktu --- */
 .timer-inputs {
     display: flex;
     justify-content: center;
@@ -86,30 +97,32 @@ body {
 }
 
 .input-group input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--secondary-text-color);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--secondary-text-color);
+    border-radius: 8px;
     color: var(--primary-text-color);
-    font-size: 1.5rem;
-    width: 60px;
-    text-align: center;
+    font-size: 1.2rem;
     font-family: var(--font-family);
-    transition: border-color 0.3s ease;
+    width: 70px;
+    text-align: center;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
 }
 
-/* Menghilangkan panah di input number */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+/* Menghilangkan panah default pada input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .input-group input:focus {
     outline: none;
     border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(var(--accent-color-rgb), 0.5);
 }
 
 .input-group label {
@@ -119,76 +132,100 @@ input[type=number] {
     letter-spacing: 1px;
 }
 
-/* Tombol Kontrol */
+/* --- Tombol Kontrol --- */
 .timer-controls {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .timer-controls button {
     font-family: var(--font-family);
     font-size: 1rem;
     font-weight: 600;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1.8rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition: all 0.2s ease-in-out;
     text-transform: uppercase;
     letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 #start-btn {
     background-color: var(--accent-color);
-    color: var(--bg-color);
+    color: #000;
 }
 
 #start-btn:hover {
     background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 #pause-btn {
     background-color: var(--warning-color);
-    color: var(--bg-color);
+    color: #000;
+}
+
+#pause-btn:hover {
+    background-color: #d88e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 #reset-btn {
     background-color: var(--secondary-text-color);
-    color: var(--container-color);
+    color: var(--bg-color);
+}
+
+#reset-btn:hover {
+    background-color: #999;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 .timer-controls button:active {
-    transform: scale(0.97);
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .timer-controls button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hidden {
     display: none;
 }
 
-/* Media Queries untuk Responsivitas */
-@media (max-width: 480px) {
+/* --- Media Queries untuk Responsivitas --- */
+@media (max-width: 600px) {
     .timer-container {
-        padding: 1.5rem;
-        gap: 1.5rem;
+        padding: 2rem;
+        gap: 2rem;
     }
+}
 
+@media (max-width: 480px) {
+    .timer-display {
+        font-size: clamp(2.5rem, 15vw, 5rem);
+    }
     .timer-inputs {
         gap: 1rem;
     }
-
     .input-group input {
-        width: 50px;
-        font-size: 1.2rem;
+        width: 60px;
     }
-
     .timer-controls {
-        flex-direction: column;
-        width: 100%;
+        gap: 0.8rem;
+    }
+    .timer-controls button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
